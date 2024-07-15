@@ -93,7 +93,7 @@ const songs = [
   },
   {
     path: "assets/16.mp3",
-    displayName: "Ehsaas Tujhe Bhi Mere Pyaar Ka Hoga",
+    displayName: "Ehsaas Tujhe Bhi",
     cover: "assets/16.jpg",
     artist: "Arjeet Singh",
   },
