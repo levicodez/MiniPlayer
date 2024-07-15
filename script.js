@@ -125,6 +125,7 @@ const image = document.getElementById('cover'),
     nextBtn = document.getElementById('next'),
     playBtn = document.getElementById('play'),
     background = document.getElementById('bg-img');
+    const disk = document.getElementById('player-img');
 
 const music = new Audio();
 
@@ -140,6 +141,7 @@ function togglePlay() {
     }
 }
 
+
 function playMusic() {
     isPlaying = true;
     // Change play button icon
@@ -147,9 +149,17 @@ function playMusic() {
     // Set button hover title
     playBtn.setAttribute('title', 'Pause');
     music.play();
-    document.body.querySelector(".player-img").classList.add("animate")
+    // document.body.querySelector(".player-img").classList.add("animate")
+    toggleAnimation(true);
 }
 
+function toggleAnimation(play) {
+    if (play) {
+        disk.style.animationPlayState = 'running';
+    } else {
+        disk.style.animationPlayState = 'paused';
+    }
+}
 function pauseMusic() {
     isPlaying = false;
     // Change pause button icon
@@ -157,7 +167,8 @@ function pauseMusic() {
     // Set button hover title
     playBtn.setAttribute('title', 'Play');
     music.pause();
-    document.body.querySelector(".player-img").classList.remove("animate")
+    // document.body.querySelector(".player-img").classList.remove("animate")
+    toggleAnimation(false);
 }
 
 function loadMusic(song) {
@@ -166,6 +177,13 @@ function loadMusic(song) {
     artist.textContent = song.artist;
     image.src = song.cover;
     background.src = song.cover;
+    resetDiskAnimation();
+}
+
+function resetDiskAnimation() {
+    disk.style.animation = 'none';
+    void disk.offsetWidth; 
+    disk.style.animation = 'rotate 40s linear infinite paused'; 
 }
 
 function changeMusic(direction) {
@@ -198,3 +216,5 @@ music.addEventListener('timeupdate', updateProgressBar);
 playerProgress.addEventListener('click', setProgressBar);
 
 loadMusic(songs[musicIndex]);
+
+resetDiskAnimation()
